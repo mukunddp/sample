@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House of 3D Printing - Professional 3D Printing Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c5aa0;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #2c5aa0, #4CAF50);
+            border-radius: 8px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #2c5aa0;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #1e3d72;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.3s;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .action-btn:hover {
+            background: #f0f0f0;
+        }
+
+        .cart-btn {
+            background: #2c5aa0;
+            color: white;
+        }
+
+        .cart-btn:hover {
+            background: #1e3d72;
+        }
+
+        /* Navigation */
+        .nav-container {
+            border-top: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-item {
+            position: relative;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .nav-item:hover {
+            color: #2c5aa0;
+            background: #f8f9fa;
+        }
+
+        /* Promotional Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, #2c5aa0, #4CAF50);
+            color: white;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .hero-cta:hover {
+            background: #45a049;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #2c5aa0;
+        }
+
+        .service-content {
+            padding: 24px;
+        }
+
+        .service-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .service-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4CAF50;
+            margin-bottom: 16px;
+        }
+
+        .service-btn {
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .service-btn:hover {
+            background: #1e3d72;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #2c5aa0, #4CAF50);
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .category-count {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Why Choose Us */
+        .why-choose-us {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #4CAF50, #2c5aa0);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                height: auto;
+                padding: 15px 0;
+            }
+
+            .search-container {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-item {
+                min-width: auto;
+                padding: 12px 16px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .categories-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="header-top">
+                <a href="#" class="logo">
+                    <div class="logo-icon">3D</div>
+                    House of 3D Printing
+                </a>
+                
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search for 3D printing services, materials, designs...">
+                    <button class="search-btn">🔍</button>
+                </div>
+                
+                <div class="header-actions">
+                    <button class="action-btn">
+                        💬 Help & Support
+                    </button>
+                    <button class="action-btn">
+                        📁 My Projects
+                    </button>
+                    <button class="action-btn">
+                        ❤️ My Favorites
+                    </button>
+                    <button class="action-btn">
+                        👤 Sign In
+                    </button>
+                    <button class="action-btn cart-btn">
+                        🛒 Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nav-container">
+            <nav class="nav-menu">
+                <a href="#" class="nav-item">3D Printing Services</a>
+                <a href="#" class="nav-item">Custom Prototypes</a>
+                <a href="#" class="nav-item">Design Services</a>
+                <a href="#" class="nav-item">Materials & Filaments</a>
+                <a href="#" class="nav-item">Bulk Orders</a>
+                <a href="#" class="nav-item">Educational Services</a>
+                <a href="#" class="nav-item">Jewelry & Accessories</a>
+                <a href="#" class="nav-item">Industrial Parts</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Promotional Banner -->
+    <div class="promo-banner">
+        🎉 Special Offer: Get 20% OFF on your first 3D printing order! Use code: FIRST20 | Free shipping on orders above ₹2000
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Transform Your Ideas into Reality</h1>
+            <p>Professional 3D printing services for prototypes, custom parts, and creative projects</p>
+            <a href="#" class="hero-cta">Start Your Project Now</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <h2 class="section-title">Our 3D Printing Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-image">🖨️</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Rapid Prototyping</h3>
+                        <p class="service-description">Fast and accurate prototypes for product development and testing. Perfect for engineers and designers.</p>
+                        <div class="service-price">Starting at ₹250</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">🏠</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Architectural Models</h3>
+                        <p class="service-description">Detailed architectural models and miniatures for presentations and planning.</p>
+                        <div class="service-price">Starting at ₹500</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">💍</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Custom Jewelry</h3>
+                        <p class="service-description">Unique jewelry designs and personalized accessories printed with precision.</p>
+                        <div class="service-price">Starting at ₹800</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">🔧</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Industrial Parts</h3>
+                        <p class="service-description">Custom industrial components and replacement parts with high precision.</p>
+                        <div class="service-price">Starting at ₹400</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">🎨</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Art & Sculptures</h3>
+                        <p class="service-description">Custom art pieces, sculptures, and decorative items for personal or commercial use.</p>
+                        <div class="service-price">Starting at ₹600</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-image">🎓</div>
+                    <div class="service-content">
+                        <h3 class="service-title">Educational Models</h3>
+                        <p class="service-description">Educational models and visual aids for schools, colleges, and training centers.</p>
+                        <div class="service-price">Starting at ₹300</div>
+                        <button class="service-btn">Get Quote</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Explore All Categories</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🔬</div>
+                    <h3 class="category-title">Medical Models</h3>
+                    <p class="category-count">45+ Products</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🚗</div>
+                    <h3 class="category-title">Automotive Parts</h3>
+                    <p class="category-count">120+ Products</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🎮</div>
+                    <h3 class="category-title">Gaming Accessories</h3>
+                    <p class="category-count">80+ Products</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏡</div>
+                    <h3 class="category-title">Home Decor</h3>
+                    <p class="category-count">200+ Products</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">📱</div>
+                    <h3 class="category-title">Phone Cases</h3>
+                    <p class="category-count">150+ Products</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🎪</div>
+                    <h3 class="category-title">Toys & Games</h3>
+                    <p class="category-count">90+ Products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us">
+        <div class="container">
+            <h2 class="section-title">Why Choose House of 3D Printing?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Fast Turnaround</h3>
+                    <p class="feature-description">Get your 3D prints delivered within 24-48 hours for most projects. Rush orders available for urgent requirements.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Precision Quality</h3>
+                    <p class="feature-description">State-of-the-art 3D printers ensuring high precision and quality in every print. Layer resolution up to 0.1mm.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🌈</div>
+                    <h3 class="feature-title">Multiple Materials</h3>
+                    <p class="feature-description">Wide range of materials including PLA, ABS, PETG, TPU, resin, and specialty filaments for every need.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3 class="feature-title">Competitive Pricing</h3>
+                    <p class="feature-description">Affordable pricing with transparent costs. No hidden fees. Bulk discounts available for large orders.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3 class="feature-title">Expert Support</h3>
+                    <p class="feature-description">Technical support from experienced engineers. Design optimization and consultation services included.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚚</div>
+                    <h3 class="feature-title">Free Shipping</h3>
+                    <p class="feature-description">Free shipping on orders above ₹2000. Secure packaging ensures your prints arrive safely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">3D Printing</a></li>
+                        <li><a href="#">Rapid Prototyping</a></li>
+                        <li><a href="#">Design Services</a></li>
+                        <li><a href="#">Post-Processing</a></li>
+                        <li><a href="#">Consultation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Materials</h3>
+                    <ul>
+                        <li><a href="#">PLA Filament</a></li>
+                        <li><a href="#">ABS Filament</a></li>
+                        <li><a href="#">PETG Filament</a></li>
+                        <li><a href="#">Resin</a></li>
+                        <li><a href="#">Specialty Materials</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Design Guidelines</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Technology</a></li>
+                        <li><a href="#">Quality Assurance</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 House of 3D Printing. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple interactions
+        document.querySelectorAll('.service-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Redirecting to quote page...');
+            });
+        });
+
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value;
+            if(searchTerm) {
+                alert(`Searching for: ${searchTerm}`);
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
